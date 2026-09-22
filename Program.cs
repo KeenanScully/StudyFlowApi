@@ -1,0 +1,42 @@
+using Microsoft.EntityFrameworkCore;
+using StudyFlowApi.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Registers Entity Framework Core and connects the API to PostgreSQL.
+builder.Services.AddDbContext<StudyFlowDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("StudyFlowDatabase")));
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+// Simple endpoint used by Render to confirm the API is running.
+app.MapGet("/health", () =>
+{
+    return Results.Ok(new
+    {
+        status = "healthy"
+    });
+});
+
+app.Run();
