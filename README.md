@@ -67,12 +67,4 @@ Returns a specific module using its ID.
 
 Creates a new module.
 
-Example request:
 
-```json
-{
-  "name": "Software Development",
-  "code": "SDEV301",
-  "lecturer": "John Smith",
-  "colour": "Blue"
-}
