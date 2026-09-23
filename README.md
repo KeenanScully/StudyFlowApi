@@ -1,5 +1,8 @@
 # StudyFlowApi
 
+Link to the prototype functionality down below: 
+https://youtu.be/ml3ZqknexKM
+
 ## Purpose
 
 StudyFlow API is the backend REST API developed for the StudyFlow Android application.
